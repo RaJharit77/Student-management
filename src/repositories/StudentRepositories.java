@@ -8,10 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentRepositories {
+    private final DatabaseConnection databaseConnection;
+
+    public StudentRepositories(DatabaseConnection dataSource) {
+        this.databaseConnection = dataSource;
+    }
+
+    public StudentRepositories() {
+        this.databaseConnection = new DatabaseConnection();
+    }
+
     public List<Student> getAllGroups() throws SQLException {
         List<Student> students = new ArrayList<>();
         String query = "SELECT * FROM students";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = databaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
@@ -31,7 +41,7 @@ public class StudentRepositories {
 
     public void createStudent(Student student) throws SQLException {
         String query = "INSERT INTO students (id_student, name, sex, birth_date, reference, group_name) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = databaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, student.getId());
             pstmt.setString(2, student.getName());
@@ -45,7 +55,7 @@ public class StudentRepositories {
 
     public void updateStudent(Student student) throws SQLException {
         String query = "UPDATE students SET name = ?, sex = ?, group_name = ?, reference = ? WHERE id_student = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = databaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, student.getName());
             pstmt.setString(2, student.getSex());
@@ -58,7 +68,7 @@ public class StudentRepositories {
 
     public void deleteStudent(String id) throws SQLException {
         String query = "DELETE FROM students WHERE id_student = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = databaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
