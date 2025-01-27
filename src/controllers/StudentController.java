@@ -1,7 +1,7 @@
-package prog3.management.course.controllers;
+package controllers;
 
-import prog3.management.course.model.Student;
-import prog3.management.course.services.StudentServices;
+import model.Student;
+import services.StudentServices;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Student {
     private String id;
@@ -77,5 +78,17 @@ public class Student {
                 ", reference='" + reference + '\'' +
                 ", group=" + group +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(sex, student.sex) && Objects.equals(birthdate, student.birthdate) && Objects.equals(reference, student.reference) && Objects.equals(group, student.group);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, sex, birthdate, reference, group);
     }
 }

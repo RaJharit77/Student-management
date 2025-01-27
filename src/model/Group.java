@@ -78,4 +78,16 @@ public class Group {
                 ", students=" + students +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return id == group.id && studentNb == group.studentNb && Objects.equals(groupName, group.groupName) && Objects.equals(groupYear, group.groupYear) && Objects.equals(promotion, group.promotion) && Objects.equals(students, group.students);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, groupName, groupYear, promotion, studentNb, students);
+    }
 }
