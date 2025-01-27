@@ -11,7 +11,7 @@ public class StudentController {
 
     public List<Student> getAllStudents() {
         try {
-            return studentServices.getAllGroups();
+            return studentServices.getAllStudents();
         } catch (SQLException e) {
             System.err.println("Error fetching students: " + e.getMessage());
             return null;

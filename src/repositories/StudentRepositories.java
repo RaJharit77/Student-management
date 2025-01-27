@@ -18,7 +18,7 @@ public class StudentRepositories {
         this.databaseConnection = new DatabaseConnection();
     }
 
-    public List<Student> getAllGroups() throws SQLException {
+    public List<Student> getAllStudents() throws SQLException {
         List<Student> students = new ArrayList<>();
         String query = "SELECT * FROM students";
         try (Connection conn = databaseConnection.getConnection();

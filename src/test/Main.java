@@ -1,4 +1,4 @@
-package prog3.management.course;
+package test;
 
 import prog3.management.course.model.Group;
 import prog3.management.course.controllers.GroupController;
