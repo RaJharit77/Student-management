@@ -1,9 +1,9 @@
 package test;
 
-import prog3.management.course.model.Group;
-import prog3.management.course.controllers.GroupController;
-import prog3.management.course.controllers.StudentController;
-import prog3.management.course.model.Student;
+import model.Group;
+import controllers.GroupController;
+import controllers.StudentController;
+import model.Student;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Main {
         StudentController studentController = new StudentController();
 
         List<Student> students = new ArrayList<>();
-        Group group = new Group("G001", "Group A", "2025", "Promotion 1", 0, students);
+        Group group = new Group(1, "Group J2", "2023", "Promotion 3", 50, students);
         groupController.createGroup(group);
 
         List<Group> groups = groupController.getAllGroups();
@@ -23,7 +23,7 @@ public class Main {
             groups.forEach(g -> System.out.println("Group: " + g.getGroupName()));
         }
 
-        Student student = new Student("S001", "John Doe", "Male", new Date(), "REF001", group);
+        Student student = new Student("STD001", "John Doe", "Male", new Date(), "STD25001", group);
         studentController.createStudent(student);
 
         List<Student> studentsList = studentController.getAllStudents();

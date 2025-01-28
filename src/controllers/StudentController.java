@@ -28,7 +28,7 @@ public class StudentController {
 
     public void updateStudent(Student student) {
         try {
-            studentServices.updateGroup(student);
+            studentServices.updateStudent(student);
         } catch (SQLException e) {
             System.err.println("Error updating student: " + e.getMessage());
         }
@@ -36,7 +36,7 @@ public class StudentController {
 
     public void deleteStudent(String id) {
         try {
-            studentServices.deleteGroup(id);
+            studentServices.deleteStudent(id);
         } catch (SQLException e) {
             System.err.println("Error deleting student: " + e.getMessage());
         }
