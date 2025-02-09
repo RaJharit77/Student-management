@@ -1,17 +1,17 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Student {
     private String id;
     private String name;
-    private String sex;
-    private Date birthdate;
+    private Sex sex;
+    private LocalDate birthdate;
     private String reference;
     private Group group;
 
-    public Student(String id, String name, String sex, Date birthdate, String reference, Group group) {
+    public Student(String id, String name, Sex sex, LocalDate birthdate, String reference, Group group) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -36,19 +36,19 @@ public class Student {
         this.name = name;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -73,7 +73,7 @@ public class Student {
         return "Student{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
+                ", sex=" + sex +
                 ", birthdate=" + birthdate +
                 ", reference='" + reference + '\'' +
                 ", group=" + group +

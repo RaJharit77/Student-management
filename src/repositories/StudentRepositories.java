@@ -1,6 +1,7 @@
 package repositories;
 
 import config.DatabaseConnection;
+import model.Sex;
 import model.Student;
 
 import java.sql.*;
@@ -28,8 +29,8 @@ public class StudentRepositories {
                 Student student = new Student(
                         rs.getString("id_student"),
                         rs.getString("name"),
-                        rs.getString("sex"),
-                        rs.getDate("birth_date"),
+                        Sex.valueOf(rs.toString()),
+                        rs.getDate("birth_date").toLocalDate(),
                         rs.getString("reference"),
                         null
                 );
@@ -45,8 +46,8 @@ public class StudentRepositories {
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, student.getId());
             pstmt.setString(2, student.getName());
-            pstmt.setString(3, student.getSex());
-            pstmt.setDate(4, new java.sql.Date(student.getBirthdate().getTime()));
+            pstmt.setString(3, String.valueOf(student.getSex()));
+            pstmt.setDate(4, Date.valueOf(student.getBirthdate()));
             pstmt.setString(5, student.getReference());
             pstmt.setString(6, String.valueOf(student.getGroup() != null ? student.getGroup().getId() : null));
             pstmt.executeUpdate();
@@ -58,7 +59,7 @@ public class StudentRepositories {
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, student.getName());
-            pstmt.setString(2, student.getSex());
+            pstmt.setString(2, String.valueOf(student.getSex()));
             pstmt.setString(3, String.valueOf(student.getGroup() != null ? student.getGroup().getId() : null));
             pstmt.setString(4, student.getReference());
             pstmt.setString(5, student.getId());
